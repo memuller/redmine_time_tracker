@@ -116,6 +116,7 @@ class TimeTrackersController < ApplicationController
         if issue.new_statuses_allowed_to(User.current).include?(new_status)
             journal = @issue.init_journal(User.current, notes = l(:time_tracker_label_transition_journal))
             @issue.status_id = new_status_id
+            @issue.assigned_to = User.current
             @issue.save
         end
     end
